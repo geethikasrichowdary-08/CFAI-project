@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Disaster Relief Intelligence Portal</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Disaster Relief Intelligence Portal</h1>
+
+    <p class="subtitle">
+        AI-Powered Resource Planning & Emergency Response System
+    </p>
+
+    <form action="/plan" method="POST">
+
+        <h2>Disaster Information</h2>
+
+        <input
+            type="text"
+            name="village"
+            placeholder="Village Name"
+            required>
+
+        <select name="disaster" required>
+
+            <option value="">Select Disaster Type</option>
+            <option>Flood</option>
+            <option>Cyclone</option>
+            <option>Earthquake</option>
+            <option>Fire</option>
+
+        </select>
+
+        <input
+            type="number"
+            name="affected"
+            placeholder="Affected Population"
+            required>
+
+        <input
+            type="number"
+            name="injured"
+            placeholder="Number of Injured People"
+            required>
+
+        <select name="severity" required>
+
+            <option value="">Select Severity Level</option>
+            <option>Low</option>
+            <option>Medium</option>
+            <option>High</option>
+
+        </select>
+
+        <button type="submit">
+            Generate Relief Plan
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>
