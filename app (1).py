@@ -6,20 +6,36 @@ from collections import deque
 
 app = Flask(__name__)
 
-# =====================================================
-# CO5 - Bayes Rule Based Risk Prediction
-# =====================================================
 
-def bayes_risk(severity):
-    probabilities = {
-        "Low": 0.35,
-        "Medium": 0.65,
-        "High": 0.90
+    # =====================================================
+    # CO1 - Priority Queue
+    # =====================================================
+
+    pq = []
+
+    priority_map = {
+        "High": 1,
+        "Medium": 2,
+        "Low": 3
     }
-    return probabilities.get(severity, 0.50)
+
+    heapq.heappush(
+        pq,
+        (priority_map[severity], village)
+    )
+
+    priority_level = severity.upper()
 
 
-# =====================================================
+   # =====================================================
+    # CO1 - Rule Based Resource Estimation
+    # =====================================================
+
+    food = affected * 3
+    water = affected * 5
+    medicine = max(1, injured // 5)
+
+ # =====================================================
 # CO2 - BFS Search Algorithm
 # =====================================================
 
@@ -59,13 +75,28 @@ def plan():
     injured = int(request.form["injured"])
     severity = request.form["severity"]
 
+
     # =====================================================
-    # CO1 - Rule Based Resource Estimation
+    # CO2 - Graph Search (BFS)
     # =====================================================
 
-    food = affected * 3
-    water = affected * 5
-    medicine = max(1, injured // 5)
+    graph = {
+        "HQ": ["ZoneA", "ZoneB"],
+        "ZoneA": ["Camp"],
+        "ZoneB": ["Camp"],
+        "Camp": [village],
+        village: []
+    }
+
+    path = bfs(graph, "HQ", village)
+
+    if path:
+        route = " → ".join(path)
+        failure_analysis = "Route Found Successfully"
+    else:
+        route = "No Route Available"
+        failure_analysis = "Search Failed"
+
 
     # =====================================================
     # CO3 - CSP + Forward Checking
@@ -101,16 +132,7 @@ def plan():
 
     rescue = max(1, affected // 500)
 
-    # =====================================================
-    # CO5 - Bayesian Risk Prediction
-    # =====================================================
-
-    risk = round(
-        bayes_risk(severity) * 100,
-        2
-    )
-
-    # =====================================================
+      # =====================================================
     # CO4 - Utility Function
     # =====================================================
 
@@ -126,7 +148,8 @@ def plan():
         - injured * 0.1
     )
 
-    # =====================================================
+    
+  # =====================================================
     # CO4 - Expected Utility Decision
     # =====================================================
 
@@ -138,45 +161,28 @@ def plan():
     else:
         decision = "Monitor Situation"
 
+
     # =====================================================
-    # CO1 - Priority Queue
+    # CO5 - Bayesian Risk Prediction
     # =====================================================
 
-    pq = []
-
-    priority_map = {
-        "High": 1,
-        "Medium": 2,
-        "Low": 3
-    }
-
-    heapq.heappush(
-        pq,
-        (priority_map[severity], village)
+    risk = round(
+        bayes_risk(severity) * 100,
+        2
     )
-
-    priority_level = severity.upper()
-
+    
     # =====================================================
-    # CO2 - Graph Search (BFS)
-    # =====================================================
+# CO5 - Bayes Rule Based Risk Prediction
+# =====================================================
 
-    graph = {
-        "HQ": ["ZoneA", "ZoneB"],
-        "ZoneA": ["Camp"],
-        "ZoneB": ["Camp"],
-        "Camp": [village],
-        village: []
+def bayes_risk(severity):
+    probabilities = {
+        "Low": 0.35,
+        "Medium": 0.65,
+        "High": 0.90
     }
+    return probabilities.get(severity, 0.50)
 
-    path = bfs(graph, "HQ", village)
-
-    if path:
-        route = " → ".join(path)
-        failure_analysis = "Route Found Successfully"
-    else:
-        route = "No Route Available"
-        failure_analysis = "Search Failed"
 
     # =====================================================
     # CO6 - Sensor Fusion Concept
