@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Missing Persons Registry
+    </title>
+
+    <link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>
+        Missing Persons Registry
+    </h1>
+
+    <p>
+        Report and track missing persons during disasters
+    </p>
+
+</header>
+
+<div class="form-container">
+
+    <form method="POST">
+
+        <h2>
+            Report Missing Person
+        </h2>
+
+        <input
+            type="text"
+            name="name"
+            placeholder="Person Name"
+            required>
+
+        <input
+            type="number"
+            name="age"
+            placeholder="Age"
+            required>
+
+        <textarea
+            name="description"
+            rows="4"
+            placeholder="Last seen location and description"
+            required></textarea>
+
+        <button type="submit">
+            Submit Report
+        </button>
+
+    </form>
+
+</div>
+
+<section class="table-section">
+
+    <h2>
+        Missing Persons List
+    </h2>
+
+    <table>
+
+        <tr>
+
+            <th>Name</th>
+
+            <th>Age</th>
+
+            <th>Description</th>
+
+            <th>Status</th>
+
+        </tr>
+
+        {% for person in persons %}
+
+        <tr>
+
+            <td>
+                {{ person.name }}
+            </td>
+
+            <td>
+                {{ person.age }}
+            </td>
+
+            <td>
+                {{ person.description }}
+            </td>
+
+            <td>
+                {{ person.status }}
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</section>
+
+<div style="text-align:center; margin:30px;">
+
+    <a href="/">
+
+        <button>
+            Back To Home
+        </button>
+
+    </a>
+
+</div>
+
+</body>
+
+</html>

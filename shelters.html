@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Shelter Management
+    </title>
+
+    <link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>
+        Emergency Shelters
+    </h1>
+
+    <p>
+        Available shelter facilities during disaster situations
+    </p>
+
+</header>
+
+<section class="dashboard">
+
+    {% for shelter in shelters %}
+
+    <div class="card">
+
+        <h2>
+            {{ shelter.name }}
+        </h2>
+
+        <hr>
+
+        <p>
+            <strong>Capacity:</strong>
+            {{ shelter.capacity }}
+        </p>
+
+        <p>
+            <strong>Food Stock:</strong>
+            {{ shelter.food }}
+        </p>
+
+        <p>
+            <strong>Water Stock:</strong>
+            {{ shelter.water }}
+        </p>
+
+        {% if shelter.capacity > 300 %}
+
+        <span class="status available">
+            High Availability
+        </span>
+
+        {% elif shelter.capacity > 100 %}
+
+        <span class="status moderate">
+            Moderate Availability
+        </span>
+
+        {% else %}
+
+        <span class="status low">
+            Limited Availability
+        </span>
+
+        {% endif %}
+
+    </div>
+
+    {% endfor %}
+
+</section>
+
+<section class="info-box">
+
+    <h2>
+        Shelter Guidelines
+    </h2>
+
+    <ul class="guidelines">
+
+        <li>
+            Carry essential medicines.
+        </li>
+
+        <li>
+            Keep identity documents with you.
+        </li>
+
+        <li>
+            Follow instructions from authorities.
+        </li>
+
+        <li>
+            Maintain hygiene and sanitation.
+        </li>
+
+        <li>
+            Report emergencies immediately.
+        </li>
+
+    </ul>
+
+</section>
+
+<div style="text-align:center; margin:30px;">
+
+    <a href="/">
+
+        <button>
+            Back To Home
+        </button>
+
+    </a>
+
+</div>
+
+</body>
+
+</html>

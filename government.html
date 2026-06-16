@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Government Dashboard
+    </title>
+
+    <link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>
+        Government Control Dashboard
+    </h1>
+
+    <p>
+        Disaster monitoring and resource management center
+    </p>
+
+</header>
+
+<div class="dashboard">
+
+    <div class="card">
+
+        <h2>
+            Registered Volunteers
+        </h2>
+
+        <h1>
+            {{ volunteers|length }}
+        </h1>
+
+    </div>
+
+    <div class="card">
+
+        <h2>
+            Donations Received
+        </h2>
+
+        <h1>
+            {{ donations|length }}
+        </h1>
+
+    </div>
+
+    <div class="card">
+
+        <h2>
+            Missing Persons
+        </h2>
+
+        <h1>
+            {{ missing_persons|length }}
+        </h1>
+
+    </div>
+
+    <div class="card">
+
+        <h2>
+            Shelters
+        </h2>
+
+        <h1>
+            {{ shelters|length }}
+        </h1>
+
+    </div>
+
+    <div class="card">
+
+        <h2>
+            Hospitals
+        </h2>
+
+        <h1>
+            {{ hospitals|length }}
+        </h1>
+
+    </div>
+
+</div>
+
+<section class="table-section">
+
+    <h2>
+        Volunteer Registry
+    </h2>
+
+    <table>
+
+        <tr>
+
+            <th>Name</th>
+
+            <th>Skill</th>
+
+            <th>Availability</th>
+
+        </tr>
+
+        {% for v in volunteers %}
+
+        <tr>
+
+            <td>{{ v.name }}</td>
+
+            <td>{{ v.skill }}</td>
+
+            <td>{{ v.availability }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</section>
+
+<section class="table-section">
+
+    <h2>
+        Donation Tracker
+    </h2>
+
+    <table>
+
+        <tr>
+
+            <th>Donor</th>
+
+            <th>Item</th>
+
+            <th>Quantity</th>
+
+            <th>Status</th>
+
+        </tr>
+
+        {% for d in donations %}
+
+        <tr>
+
+            <td>{{ d.donor }}</td>
+
+            <td>{{ d.item }}</td>
+
+            <td>{{ d.quantity }}</td>
+
+            <td>{{ d.status }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</section>
+
+<section class="table-section">
+
+    <h2>
+        Missing Persons Registry
+    </h2>
+
+    <table>
+
+        <tr>
+
+            <th>Name</th>
+
+            <th>Age</th>
+
+            <th>Description</th>
+
+            <th>Status</th>
+
+        </tr>
+
+        {% for p in missing_persons %}
+
+        <tr>
+
+            <td>{{ p.name }}</td>
+
+            <td>{{ p.age }}</td>
+
+            <td>{{ p.description }}</td>
+
+            <td>{{ p.status }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</section>
+
+<div style="text-align:center; margin:30px;">
+
+    <a href="/">
+        <button>
+            Back To Home
+        </button>
+    </a>
+
+</div>
+
+</body>
+
+</html>

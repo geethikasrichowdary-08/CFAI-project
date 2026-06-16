@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Hospital Capacity Dashboard
+    </title>
+
+    <<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>
+        Hospital Capacity Dashboard
+    </h1>
+
+    <p>
+        Monitor available healthcare resources during emergencies
+    </p>
+
+</header>
+
+<section class="dashboard">
+
+    {% for hospital in hospitals %}
+
+    <div class="card">
+
+        <h2>
+            {{ hospital.name }}
+        </h2>
+
+        <hr>
+
+        <p>
+            <strong>Available Beds:</strong>
+            {{ hospital.beds }}
+        </p>
+
+        <p>
+            <strong>ICU Beds:</strong>
+            {{ hospital.icu }}
+        </p>
+
+        <p>
+            <strong>Ambulances:</strong>
+            {{ hospital.ambulances }}
+        </p>
+
+        {% if hospital.beds > 100 %}
+
+        <span class="status available">
+            High Capacity
+        </span>
+
+        {% elif hospital.beds > 50 %}
+
+        <span class="status moderate">
+            Moderate Capacity
+        </span>
+
+        {% else %}
+
+        <span class="status low">
+            Critical Capacity
+        </span>
+
+        {% endif %}
+
+    </div>
+
+    {% endfor %}
+
+</section>
+
+<section class="info-box">
+
+    <h2>
+        Emergency Medical Information
+    </h2>
+
+    <div class="medical-grid">
+
+        <div class="medical-card">
+
+            <h3>
+                Emergency Services
+            </h3>
+
+            <p>
+                24/7 medical response available.
+            </p>
+
+        </div>
+
+        <div class="medical-card">
+
+            <h3>
+                ICU Monitoring
+            </h3>
+
+            <p>
+                Critical care bed availability tracking.
+            </p>
+
+        </div>
+
+        <div class="medical-card">
+
+            <h3>
+                Ambulance Support
+            </h3>
+
+            <p>
+                Emergency transportation management.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<div style="text-align:center; margin:30px;">
+
+    <a href="/">
+
+        <button>
+            Back To Home
+        </button>
+
+    </a>
+
+</div>
+
+</body>
+
+</html>

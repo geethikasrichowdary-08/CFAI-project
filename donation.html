@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Donation & Aid Tracker
+    </title>
+
+    <link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>
+        Donation & Aid Tracker
+    </h1>
+
+    <p>
+        Support disaster relief efforts through donations
+    </p>
+
+</header>
+
+<div class="form-container">
+
+    <form method="POST">
+
+        <h2>
+            Make a Donation
+        </h2>
+
+        <input
+            type="text"
+            name="donor"
+            placeholder="Donor Name"
+            required>
+
+        <select
+            name="item"
+            required>
+
+            <option value="">
+                Select Donation Type
+            </option>
+
+            <option value="Money">
+                Money
+            </option>
+
+            <option value="Food">
+                Food
+            </option>
+
+            <option value="Water">
+                Water
+            </option>
+
+            <option value="Medicines">
+                Medicines
+            </option>
+
+            <option value="Clothes">
+                Clothes
+            </option>
+
+            <option value="Blankets">
+                Blankets
+            </option>
+
+        </select>
+
+        <input
+            type="number"
+            name="quantity"
+            placeholder="Quantity / Amount"
+            required>
+
+        <button type="submit">
+            Submit Donation
+        </button>
+
+    </form>
+
+</div>
+
+<section class="table-section">
+
+    <h2>
+        Donation Records
+    </h2>
+
+    <table>
+
+        <tr>
+
+            <th>Donor</th>
+
+            <th>Donation Type</th>
+
+            <th>Quantity</th>
+
+            <th>Status</th>
+
+        </tr>
+
+        {% for donation in donations %}
+
+        <tr>
+
+            <td>
+                {{ donation.donor }}
+            </td>
+
+            <td>
+                {{ donation.item }}
+            </td>
+
+            <td>
+                {{ donation.quantity }}
+            </td>
+
+            <td>
+                {{ donation.status }}
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</section>
+
+<section class="info-box">
+
+    <h2>
+        Aid Distribution Chain
+    </h2>
+
+    <div class="chain">
+
+        <div class="chain-step">
+            Received
+        </div>
+
+        <div class="arrow">
+            →
+        </div>
+
+        <div class="chain-step">
+            Assigned
+        </div>
+
+        <div class="arrow">
+            →
+        </div>
+
+        <div class="chain-step">
+            Transported
+        </div>
+
+        <div class="arrow">
+            →
+        </div>
+
+        <div class="chain-step">
+            Delivered
+        </div>
+
+    </div>
+
+</section>
+
+<div style="text-align:center; margin:30px;">
+
+    <a href="/">
+
+        <button>
+            Back To Home
+        </button>
+
+    </a>
+
+</div>
+
+</body>
+
+</html>

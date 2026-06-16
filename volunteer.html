@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Volunteer Registration
+    </title>
+
+    <link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>
+        Volunteer Coordination Portal
+    </h1>
+
+    <p>
+        Register your skills and help communities during disasters
+    </p>
+
+</header>
+
+<div class="form-container">
+
+    <form method="POST">
+
+        <h2>
+            Register as Volunteer
+        </h2>
+
+        <input
+            type="text"
+            name="name"
+            placeholder="Full Name"
+            required>
+
+        <input
+            type="text"
+            name="skill"
+            placeholder="Skill (Medical, Rescue, Logistics, Food Supply)"
+            required>
+
+        <select
+            name="availability"
+            required>
+
+            <option value="">
+                Select Availability
+            </option>
+
+            <option value="Full Time">
+                Full Time
+            </option>
+
+            <option value="Part Time">
+                Part Time
+            </option>
+
+            <option value="Weekends">
+                Weekends
+            </option>
+
+        </select>
+
+        <button type="submit">
+            Register Volunteer
+        </button>
+
+    </form>
+
+</div>
+
+<section class="table-section">
+
+    <h2>
+        Registered Volunteers
+    </h2>
+
+    <table>
+
+        <tr>
+
+            <th>Name</th>
+
+            <th>Skill</th>
+
+            <th>Availability</th>
+
+        </tr>
+
+        {% for volunteer in volunteers %}
+
+        <tr>
+
+            <td>
+                {{ volunteer.name }}
+            </td>
+
+            <td>
+                {{ volunteer.skill }}
+            </td>
+
+            <td>
+                {{ volunteer.availability }}
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</section>
+
+<div style="text-align:center; margin:30px;">
+
+    <a href="/">
+
+        <button>
+            Back To Home
+        </button>
+
+    </a>
+
+</div>
+
+</body>
+
+</html>
